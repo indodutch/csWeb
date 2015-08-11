@@ -120,6 +120,10 @@ module Translations {
                 TITLE: 'Project Settings',
                 DESCRIPTION: 'Settings'
             },
+            SIMULATIONSETTINGS: {
+                TITLE: 'Simulations',
+                DESCRIPTION: 'Settings for running simulations'
+            },
             SHOW5: 'Show 5 items',
             SHOW10: 'Show 10 items',
             SHOW15: 'Show 15 items',

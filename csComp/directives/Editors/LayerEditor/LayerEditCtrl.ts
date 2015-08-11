@@ -1,5 +1,4 @@
 module LayerEdit {
-
     export interface ILayerEditScope extends ng.IScope {
         vm: LayerEditCtrl;
     }
@@ -37,12 +36,6 @@ module LayerEdit {
             this.layer = $scope.$parent["data"];
             this.getTypes();
             var ft = <csComp.Services.IFeatureType>{};
-
-
-            //this.layer.refreshTimer
-            //console.log(this.layer.refreshBBOX);
-
-
         }
 
         public addLayer() {
@@ -74,16 +67,12 @@ module LayerEdit {
                             r.featureTypes[ft.id] = ft;
                             //this.$layerService.getFeatureTypeId()
                         }
-
                     }
                 });
             }
 
-
-
             console.log(this.layer.defaultFeatureType);
         }
-
 
         public getTypes() {
             //var params = { address: address, sensor: false };
@@ -93,14 +82,7 @@ module LayerEdit {
                     this.availabeTypes = response.featureTypes;
                     console.log(this.availabeTypes);
                 }, 0);
-
             });
-
         };
-
-
-
-
-
     }
 }

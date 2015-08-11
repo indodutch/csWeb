@@ -42,6 +42,7 @@
         "./classes/layer.ts",
         "./classes/map.ts",
         "./classes/project.ts",
+        "./classes/simulation.ts",
         "./classes/typeresource.ts",
         "./directives/Accessibility/Accessibility.ts",
         "./directives/Accessibility/AccessibilityCtrl.ts",
@@ -76,6 +77,8 @@
         "./directives/Editors/LayerEditor/LayerEditCtrl.ts",
         "./directives/Editors/PropertyTypeEditor/PropertyTypes.ts",
         "./directives/Editors/PropertyTypeEditor/PropertyTypesCtrl.ts",
+        "./directives/Editors/SimulationEditor/SimulationEdit.ts",
+        "./directives/Editors/SimulationEditor/SimulationEditCtrl.ts",
         "./directives/ExpertMode/ExpertMode.ts",
         "./directives/ExpertMode/ExpertModeCtrl.ts",
         "./directives/FeatureList/FeatureList.ts",
@@ -123,6 +126,8 @@
         "./directives/ProjectSettings/ProjectSettingsCtrl.ts",
         "./directives/Resize/Resize.ts",
         "./directives/ShowModal/ShowModal.ts",
+        "./directives/SimulationSettings/SimulationSettings.ts",
+        "./directives/SimulationSettings/SimulationSettingsCtl.ts",
         "./directives/StyleList/StyleList.ts",
         "./directives/StyleList/StyleListCtrl.ts",
         "./directives/Timeline/Timeline.ts",
@@ -171,7 +176,9 @@
         "./services/map/renderers/cesiumRenderer.ts",
         "./services/map/renderers/leafletRenderer.ts",
         "./services/search/SearchFormCtrl.ts",
+        "./services/simulation/SimulationService.ts",
         "./translations/locale-en.ts",
-        "./translations/locale-nl.ts"
+        "./translations/locale-nl.ts",
+        "./typings/tsd.d.ts"
     ]
 }

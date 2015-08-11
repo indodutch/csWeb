@@ -120,6 +120,10 @@ module Translations {
                 TITLE: 'Project instellingen',
                 DESCRIPTION: 'Instellingen'
             },
+            SIMULATIONSETTINGS: {
+                TITLE: 'Simulaties',
+                DESCRIPTION: 'Instellingen voor simulaties'
+            },
             SHOW5: 'Toon 5 regels',
             SHOW10: 'Toon 10 regels',
             SHOW15: 'Toon 15 regels',
