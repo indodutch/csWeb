@@ -18,6 +18,7 @@
         "./Scripts/typings/JSONStream/JSONStream.d.ts",
         "./Scripts/typings/angular-translate/angular-translate.d.ts",
         "./Scripts/typings/angular-ui-router/angular-ui-router.d.ts",
+	"./Scripts/typings/angular-ui-bootstrap/angular-ui-bootstrap.d.ts",
         "./Scripts/typings/angularLocalStorage/angularLocalStorage.d.ts",
         "./Scripts/typings/angularjs/angular-cookies.d.ts",
         "./Scripts/typings/angularjs/angular-mocks.d.ts",
