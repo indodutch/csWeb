@@ -1,25 +1,35 @@
 <div>
-    <div class="wide-tooltip">
-        <span class="pull-right fa fa-info-circle fa-2x" tooltip-html-unsafe="{{'SIMULATIONSETTINGS.DESCRIPTION' | translate}}" tooltip-placement="bottom" tooltip-trigger="mouseenter" tooltip-append-to-body="false" style="margin-right: 5px;"></span>
-        <h4 class="leftpanel-header" translate="SIMULATIONSETTINGS.TITLE"></h4>
+    <h3 class="leftpanel-header" style="width: 100%">
+        <span translate="SIMULATIONSETTINGS.TITLE" />
+    </h3>
+    <div>
+        TODO: Load URL's from config
     </div>
 
-    <div style="float: left; margin-left: -5px; margin-top: 5px" data-toggle="collapse" data-target="#startSimulation"><i class="fa fa-chevron-down togglebutton toggle-arrow-down"></i><i class="fa fa-chevron-up togglebutton toggle-arrow-up"></i></div>
-    <div class="group-title">Start new simulation</div>
-    <div id="startSimulation" class="collapse in">
-        Show parameters from /explore/simulate/matsim/0.3
-    </div>
-
-    <div style="float: left; margin-left: -5px; margin-top: 5px" data-toggle="collapse" data-target="#simResults"><i class="fa fa-chevron-down togglebutton toggle-arrow-down"></i><i class="fa fa-chevron-up togglebutton toggle-arrow-up"></i></div>
-    <div class="group-title">Simulation results</div>
-    <div id="simResults" class="collapse in">
-        TODO: confgure simulation source URL
-        <div data-ng-repeat="simulation in vm.$simulationService.simulations" style="margin-left: 5px;position:relative;">
-            <div>
-                {{simulation.name}}
-                <div class="leftpanel-header-button-container">
-                    <button ng-click="'call something like vm.remove(value.id)'" class="button fa fa-trash leftpanel-header-button" />
-                    <button ng-click="vm.viewDetails(simulation)" class="button fa fa-cog leftpanel-header-button" />
+    <div style="overflow-y: auto; overflow-x: hidden; margin-top: -10px" resize resize-y="95">
+        <div style="margin-left: 5px;position:relative;">
+            <div style="float: left; margin-left: -5px; margin-top: 5px" data-toggle="collapse" data-target="#newSim"><i class="fa fa-chevron-down togglebutton toggle-arrow-down"></i><i class="fa fa-chevron-up togglebutton toggle-arrow-up"></i></div>
+            <div class="group-title">Start new simulation</div>
+            <div class="fa fa-cog" ng-click="vm.showNewSimulationConfig()" style="position:absolute;right:20px;top:3px;cursor:pointer"></div>
+            <div id="newSim" class="collapse in">
+                <div>
+                    TODO: Show parameters from {{ vm.$simulationService.serviceURL }}
+                </div>
+            </div>
+        </div>
+        <div style="margin-left: 5px;position:relative;">
+            <div style="float: left; margin-left: -5px; margin-top: 5px" data-toggle="collapse" data-target="#simResults"><i class="fa fa-chevron-down togglebutton toggle-arrow-down"></i><i class="fa fa-chevron-up togglebutton toggle-arrow-up"></i></div>
+            <div class="group-title">Simulation results</div>
+            <div class="fa fa-cog" ng-click="vm.showResultsConfig()" style="position:absolute;right:20px;top:3px;cursor:pointer"></div>
+            <div id="simResults" class="collapse in">
+                <div data-ng-repeat="(id,simulation) in vm.$simulationService.simulations" style="margin-left: 5px;position:relative;">
+                    <div>
+                        {{simulation.name}}
+                        <div class="leftpanel-header-button-container">
+                            <button ng-click="vm.delete(simulation)" class="button fa fa-trash leftpanel-header-button" />
+                            <button ng-click="vm.viewDetails(simulation)" class="button fa fa-cog leftpanel-header-button" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

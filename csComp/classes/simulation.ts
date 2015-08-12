@@ -1,7 +1,6 @@
 module csComp.Services {
     'use strict';
 
-    // Move elsewhere ?
     export class Simulation {
         id: string;
         name: string;

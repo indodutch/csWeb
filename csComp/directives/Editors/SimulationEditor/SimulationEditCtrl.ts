@@ -16,10 +16,8 @@ module SimulationEdit {
             ) {
                 $scope.vm = this;
                 this.simulation = $scope.$parent["data"];
-        }
-
-        public debug(): void {
-            console.log("debug...");
+                console.log("Simulation to display:");
+                console.log(this.simulation.name);
         }
     }
 }

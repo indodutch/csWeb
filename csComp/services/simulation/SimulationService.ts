@@ -2,7 +2,9 @@ module csComp.Services {
     'use strict';
 
     export class SimulationService {
-        simulations: Simulation[] = [];
+        simulations: { [id: string]: Simulation } = {};
+        resultsURL: string = 'http://localhost/couchdb/simcity/_design/matsim_0.3/_view/all_docs';
+        serviceURL: string = 'http://localhost/explore/simulate/matsim/0.3';
 
         static $inject = [
             '$http'
@@ -11,11 +13,18 @@ module csComp.Services {
         constructor(
             private $http: ng.IHttpService
         ) {
-            this.loadSimulations('http://localhost/couchdb/simcity/_design/matsim_0.3/_view/all_docs');
+            this.loadSimulationResults(this.resultsURL);
         }
 
-        public loadSimulations(url: any): void {
+        public loadSimulationService(url: string): void {
+            this.serviceURL = url;
+            console.log('Load simulation parameters from');
+        }
+
+        public loadSimulationResults(url: string): void {
             // load from http://localhost/couchdb/simcity/_design/matsim_0.3/_view/all_docs
+            this.resultsURL = url;
+            this.simulations = {};
             this.$http.get(url)
                 .success((data: any) => {
                     this.parseSimCitySimulation(data);
@@ -27,12 +36,17 @@ module csComp.Services {
         }
 
         private parseSimCitySimulation(data: Object) {
-            this.simulations = [];
             data['rows'].forEach((row: Object) => {
                 var value = row['value'];
                 var newSim = new Simulation(value['id'], value['input']['name'], value['url'], value['input']);
-                this.simulations.push(newSim);
+                this.simulations[value['id']] = newSim;
             });
+        }
+
+        public delete(sim: Simulation): void {
+            console.log('Should send request to url to actually delete');
+            // this.$http.post(url,"delete sim.id").then(delete from view);
+            delete this.simulations[sim.id];
         }
     }
 

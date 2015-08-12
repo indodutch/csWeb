@@ -17,8 +17,8 @@
     ],
     "files": [
         "./Scripts/typings/angular-translate/angular-translate.d.ts",
+        "./Scripts/typings/angular-ui-bootstrap/angular-ui-bootstrap.d.ts",
         "./Scripts/typings/angular-ui-router/angular-ui-router.d.ts",
-	"./Scripts/typings/angular-ui-bootstrap/angular-ui-bootstrap.d.ts",
         "./Scripts/typings/angularLocalStorage/angularLocalStorage.d.ts",
         "./Scripts/typings/angularjs/angular-cookies.d.ts",
         "./Scripts/typings/angularjs/angular.d.ts",
@@ -128,6 +128,8 @@
         "./directives/ProjectSettings/ProjectSettingsCtrl.ts",
         "./directives/Resize/Resize.ts",
         "./directives/ShowModal/ShowModal.ts",
+        "./directives/SimulationSettings/ConfirmCtrl.ts",
+        "./directives/SimulationSettings/GetURLCtrl.ts",
         "./directives/SimulationSettings/SimulationSettings.ts",
         "./directives/SimulationSettings/SimulationSettingsCtl.ts",
         "./directives/StyleList/StyleList.ts",
