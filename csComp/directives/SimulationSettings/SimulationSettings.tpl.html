@@ -3,7 +3,7 @@
         <span translate="SIMULATIONSETTINGS.TITLE" />
     </h3>
     <div>
-        TODO: Load URL's from config
+        TODO: Load URL's from project config
     </div>
 
     <div style="overflow-y: auto; overflow-x: hidden; margin-top: -10px" resize resize-y="95">
@@ -12,8 +12,11 @@
             <div class="group-title">Start new simulation</div>
             <div class="fa fa-cog" ng-click="vm.showNewSimulationConfig()" style="position:absolute;right:20px;top:3px;cursor:pointer"></div>
             <div id="newSim" class="collapse in">
-                <div>
-                    TODO: Show parameters from {{ vm.$simulationService.serviceURL }}
+                <div data-ng-repeat="launchParam in vm.$simulationService.simulationLauncher.params">
+                    <simulation-parameter param="launchParam"/>
+                </div>
+                <div style="margin-top: 5px">
+                    <button ng-click="vm.launchSimulation()">Launch simulation</button>
                 </div>
             </div>
         </div>
@@ -22,7 +25,7 @@
             <div class="group-title">Simulation results</div>
             <div class="fa fa-cog" ng-click="vm.showResultsConfig()" style="position:absolute;right:20px;top:3px;cursor:pointer"></div>
             <div id="simResults" class="collapse in">
-                <div data-ng-repeat="(id,simulation) in vm.$simulationService.simulations" style="margin-left: 5px;position:relative;">
+                <div data-ng-repeat="(id,simulation) in vm.$simulationService.simulationResults" style="margin-left: 5px;position:relative;">
                     <div>
                         {{simulation.name}}
                         <div class="leftpanel-header-button-container">

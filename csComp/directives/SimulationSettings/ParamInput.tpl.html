@@ -1,0 +1,19 @@
+<div ng-switch="vm.parameter.type">
+    <label for="parameter">
+        {{ vm.parameter.title }}:
+    </label>
+    <div ng-switch-when="str" id="parameter">
+        <!-- Parameter type string -->
+        <input type="text" ng-model="vm.parameter.value" name="{{vm.parameter.name}}" value="" ng-minlength="{{vm.parameter.min_length}}"/>
+    </div>
+
+    <div ng-switch-when="number" id="parameter">
+        <!-- Parameter type number -->
+        <input type="number" ng-model="vm.parameter.value" name="{{vm.parameter.name}}" value="{{vm.parameter.default}}" min="{{vm.parameter.min}}" max="{{vm.parameter.max}}"/>
+    </div>
+
+    <div ng-switch-when="list" id="parameter">
+        <!-- Parameter type list -->
+        Click-and-point interface
+    </div>
+</div>

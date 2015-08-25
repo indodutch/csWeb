@@ -20,12 +20,12 @@ module SimulationSettings {
             $scope.vm = this;
         }
 
-        public viewDetails(sim: csComp.Services.Simulation): void {
+        public viewDetails(sim: csComp.Services.SimulationResult): void {
             var rpt = csComp.Helpers.createRightPanelTab('edit', 'simulationedit', sim, 'Edit simulation', 'Edit simulation');
             this.$messageBusService.publish('rightpanel', 'activate', rpt);
         }
 
-        public delete(sim: csComp.Services.Simulation): void {
+        public delete(sim: csComp.Services.SimulationResult): void {
             var modalInstance = this.$modal.open({
                 templateUrl: 'directives/SimulationSettings/Confirm.tpl.html',
                 controller: ConfirmCtrl,
@@ -54,9 +54,9 @@ module SimulationSettings {
         }
 
         public showNewSimulationConfig(): void {
-            this.promptForURL('Enter simulation service URL', this.$simulationService.serviceURL,
+            this.promptForURL('Enter simulation service URL', this.$simulationService.launcherURL,
                 (url) => {
-                    this.$simulationService.loadSimulationService(url);
+                    this.$simulationService.loadSimulationLauncher(url);
                 });
         }
 
@@ -65,6 +65,14 @@ module SimulationSettings {
                 (url) => {
                     this.$simulationService.loadSimulationResults(url);
                 });
+        }
+
+        public launchSimulation():void {
+            console.log("Launching new simulation! =============");
+            console.log("  URL   : " + this.$simulationService.resultsURL);
+            console.log("  Params: ");
+            console.log(this.$simulationService.simulationLauncher.params);
+            console.log("=======================================");
         }
     }
 }

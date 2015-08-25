@@ -5,7 +5,7 @@ module SimulationEdit {
 
     export class SimulationEditCtrl {
         private scope: ISimulationEditScope;
-        public simulation: csComp.Services.Simulation;
+        public simulation: csComp.Services.SimulationResult;
 
         public static $inject = [
             '$scope',
@@ -16,8 +16,6 @@ module SimulationEdit {
             ) {
                 $scope.vm = this;
                 this.simulation = $scope.$parent["data"];
-                console.log("Simulation to display:");
-                console.log(this.simulation.name);
         }
     }
 }
