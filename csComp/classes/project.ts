@@ -152,7 +152,7 @@ module csComp.Services {
         languages: ILanguageData;
         /** link to layer directory, if empty do not use it */
         layerDirectory: string;
-
+        simulationEngines: csComp.Services.SimulationEngine[];
 
         expertMode = Expertise.Expert;
         markers = {};
@@ -234,10 +234,14 @@ module csComp.Services {
                     res.groups.push(ProjectGroup.deserialize(group));
                 });
             }
+            if(input.simulationEngines) {
+                res.simulationEngines = [];
+                input.simulationEngines.forEach(simEngine => {
+                    res.simulationEngines.push(SimulationEngine.deserialize(simEngine));
+                });
+            }
             if (res.id == null) { res.id = res.title; }
             return res;
         }
     }
-
-
 }

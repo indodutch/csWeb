@@ -35,7 +35,6 @@ module GroupEdit {
             this.scope = $scope;
             $scope.vm = this;
             $scope.group = $scope.$parent["data"];
-            console.log($scope.group);
             this.updateLayers();
             this.$messageBusService.subscribe('layer', () => {
                 this.updateLayers();
@@ -44,14 +43,10 @@ module GroupEdit {
 
         public updateLayers() {
             this.noLayerSelected = this.$scope.group.layers.some((l: csComp.Services.ProjectLayer) => l.enabled);
-            //console.log("selected " + this.noLayerSelected)
-            //this.$scope.group.oneLayerActive
         }
 
         public removeGroup() {
-
             this.$layerService.removeGroup(this.$scope.group);
-
         }
 
         public toggleClustering() {

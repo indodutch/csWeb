@@ -1,6 +1,22 @@
 module csComp.Services {
     'use strict';
 
+    export class SimulationEngine {
+        name: string;
+        launcher: string;
+        results: string;
+
+        constructor(name: string, launcher: string, results: string){
+            this.name = name;
+            this.launcher = launcher;
+            this.results = results;
+        }
+
+        public static deserialize(input: Object): SimulationEngine {
+            return new SimulationEngine(input["name"], input["launcher"], input["results"]);
+        }
+    }
+
     export class SimulationResult {
         id: string;
         name: string;
