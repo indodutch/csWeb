@@ -1,4 +1,4 @@
-module SimulationSettings {
+module Simulations {
     function parameterInput($compile): ng.IDirective  {
         var directive = {
             terminal: true,    // do not compile any other internal directives
@@ -6,7 +6,7 @@ module SimulationSettings {
             scope: {
                 param: '='
             },
-            templateUrl: 'directives/SimulationSettings/ParamInput.tpl.html',
+            templateUrl: 'directives/Simulations/ParamInput.tpl.html',
             replace: true,    // Remove the directive from the DOM
             controller: ParamInputCtrl
         };

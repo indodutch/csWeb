@@ -2,72 +2,48 @@ module csComp.Services {
     'use strict';
 
     export class SimulationService {
-        simulationResults: { [id: string]: SimulationResult } = {};
-        simulationLauncher: SimulationLauncher;
-        resultsURL: string = '/couchdb/simcity/_design/matsim_0.3/_view/all_docs';
-        launcherURL: string = '/explore/simulate/matsim/0.3';
-
         static $inject = [
             '$http',
+            '$q',
             'messageBusService'
         ];
 
         constructor(
             private $http: ng.IHttpService,
+            private $q: ng.IQService,
             private $messageBusService: Services.MessageBusService
-        ) {
-            // TODO: remove hard coded URL's
-            console.log('SimulationService: resultsURL and launcherURL are hard coded!' );
-            this.loadSimulationResults(this.resultsURL);
-            this.loadSimulationLauncher(this.launcherURL);
-        }
+        ) {}
 
-        public loadSimulationLauncher(url: string): void {
-            this.launcherURL = url;
-            this.$http.get(url)
-                .success((data: any) => {
-                    this.parseSimulationLauncher(data);
-                })
-                .error((data, status,a,b) => {
-                    this.$messageBusService.notify('ERROR loading simulation service', 'Loading:\n' + url + '\nHTTP status: ' + status);
-                });
-        }
-
-        private parseSimulationLauncher(data: Object): void {
-            // this.simulationService;
-            console.log('Parse this: ');
-            console.log(data);
-            console.log();
-
-            this.simulationLauncher = new SimulationLauncher(data['command']);
-            data['parameters'].forEach((row: Object) => {
-                console.log('  ' + row['name'] + ' ' + row['type']);
-                var p = new SimulationLauncherParam(row);
-                this.simulationLauncher.params.push(p);
+        public buildSimulationEngine(name: string, launcherURL: string, resultsURL: string): ng.IPromise<SimulationEngine> {
+            var promise = this.$q.all([
+                this.$http.get(launcherURL),
+                this.$http.get(resultsURL)
+            ]).then((results) => {
+                var simLauncher = this.parseSimulationLauncher(launcherURL, results[0]['data']);
+                var simResults = this.parseSimulationResults(results[1]['data']);
+                return new SimulationEngine(name, simLauncher, simResults);
             });
+            return promise;
         }
 
-        public loadSimulationResults(url: string): void {
-            // load from http://localhost/couchdb/simcity/_design/matsim_0.3/_view/all_docs
-            this.resultsURL = url;
-            this.simulationResults = {};
-            this.$http.get(url)
-                .success((data: any) => {
-                    this.parseSimCitySimulation(data);
-                })
-                .error((data, status,a,b) => {
-                    this.$messageBusService.notify('ERROR loading simulation results', 'Loading:\n' + url + '\nHTTP status: ' + status);
-                });
+        private parseSimulationLauncher(url: string, data: Object): SimulationLauncher {
+            var launcher = new SimulationLauncher(url, data['command']);
+            data['parameters'].forEach((row: Object) => {
+                var p = new SimulationLauncherParam(row);
+                launcher.params.push(p);
+            });
+            return launcher;
         }
 
-        private parseSimCitySimulation(data: Object) {
+        private parseSimulationResults(data: Object): SimulationResult[] {
+            var simResults = [];
             data['rows'].forEach((row: Object) => {
                 var value = row['value'];
                 var newSim = new SimulationResult(value['id'], value['input']['name'],
                                             value['url'], value['input']);
-                this.simulationResults[value['id']] = newSim;
-                this.loadSimulationAttachments(newSim);
+                simResults.push(newSim);
             });
+            return simResults;
         }
 
         private loadSimulationAttachments(sim: SimulationResult) {
@@ -94,7 +70,7 @@ module csComp.Services {
         public delete(sim: SimulationResult): void {
             console.log('Should send request to url to actually delete');
             // this.$http.post(url,"delete sim.id").then(delete from view);
-            delete this.simulationResults[sim.id];
+            // delete this.simulationResults[sim.id];
         }
     }
 

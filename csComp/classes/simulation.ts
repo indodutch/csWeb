@@ -3,10 +3,10 @@ module csComp.Services {
 
     export class SimulationEngine {
         name: string;
-        launcher: string;
-        results: string;
+        launcher: SimulationLauncher;
+        results: SimulationResult[];
 
-        constructor(name: string, launcher: string, results: string){
+        constructor(name: string, launcher: SimulationLauncher, results: SimulationResult[]) {
             this.name = name;
             this.launcher = launcher;
             this.results = results;
@@ -56,10 +56,12 @@ module csComp.Services {
     }
 
     export class SimulationLauncher {
+        url: string;
         command: string;
         params: SimulationLauncherParam[];
 
-        constructor(command: string) {
+        constructor(url: string, command: string) {
+            this.url = url;
             this.command = command;
             this.params = [];
         }

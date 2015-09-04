@@ -1,4 +1,4 @@
-module SimulationSettings {
+module Simulations {
     export interface IConfirmCtrlScope extends ng.IScope {
         vm: ConfirmCtrl;
     }

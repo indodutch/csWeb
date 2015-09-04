@@ -1,12 +1,12 @@
-module SimulationSettings {
-    function simulationSettings($compile): ng.IDirective  {
+module Simulations {
+    function simulationList($compile): ng.IDirective  {
         var directive = {
-            terminal: true,    // do not compile any other internal directives
+            terminal: false,    // do not compile any other internal directives
             restrict: 'E',     // E = elements, other options are A=attributes and C=classes
             scope: {},      // isolated scope, separated from parent. Is however empty, as this directive is self contained by using the messagebus.
-            templateUrl: 'directives/SimulationSettings/SimulationSettings.tpl.html',
+            templateUrl: 'directives/Simulations/SimulationList.tpl.html',
             replace: true,    // Remove the directive from the DOM
-            controller: SimulationSettingsCtrl
+            controller: SimulationListCtrl
         };
         return directive;
     }
@@ -14,5 +14,5 @@ module SimulationSettings {
     // Register directives following Johnpapa style. https://github.com/johnpapa/angular-styleguide#directives
     angular
         .module('csComp')
-        .directive('simulationSettings', simulationSettings);
+        .directive('simulationList', simulationList);
 }

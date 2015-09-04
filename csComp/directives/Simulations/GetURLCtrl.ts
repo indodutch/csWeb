@@ -1,4 +1,4 @@
-module SimulationSettings {
+module Simulations {
     export interface IGetURLScope extends ng.IScope {
         vm: GetURLCtrl;
     }

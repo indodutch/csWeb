@@ -1,4 +1,4 @@
-module SimulationSettings {
+module Simulations {
     export interface IParamInputCtrlScope extends ng.IScope {
         vm: ParamInputCtrl;
         param: csComp.Services.SimulationLauncherParam;
@@ -15,7 +15,7 @@ module SimulationSettings {
 
         constructor(private $scope: IParamInputCtrlScope) {
             $scope.vm = this;
-            this.parameter = <csComp.Services.SimulationLauncherParam> $scope.param;
+            this.parameter = $scope.param;
         }
     }
 }

@@ -1,0 +1,15 @@
+<div>
+    <h3 class="leftpanel-header" style="width: 100%">
+        <span translate="SIMULATIONSETTINGS.TITLE" />
+        <div class="leftpanel-header-button-container">
+            <button class="button fa fa-plus leftpanel-header-button" ng-click="vm.addSimulationLauncher()" />
+        </div>
+    </h3>
+    <div>
+        TODO: Load SimulationBundle configs from project config
+    </div>
+
+    <div data-ng-repeat="simEngine in vm.engines">
+        <simulation-engine-view engine="simEngine"></simulation-engine-view>
+    </div>
+</div>
