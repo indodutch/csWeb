@@ -6,24 +6,45 @@ module Simulations {
 
     export class SimulationEngineViewCtrl {
         public static $inject = [
-            '$scope',
-            '$modal'
+            "$scope",
+            "$modal",
+            "simulationService",
+            "messageBusService"
         ];
         engine: csComp.Services.SimulationEngine;
 
         constructor(
                 private $scope: ISimulationEngineViewScope,
-                private $modal: ng.ui.bootstrap.IModalService
+                private $modal: ng.ui.bootstrap.IModalService,
+                private $simulationService: csComp.Services.SimulationService,
+                private $messageBusService: csComp.Services.MessageBusService
             ) {
                 $scope.vm = this;
                 this.engine = $scope.engine;
         }
 
         public configSimulationEngine(): void {
-            console.log("Configure simulation engine...");
-            console.log("  > get name");
-            console.log("  > get launcher URL");
-            console.log("  > get results URL");
+            var modalInstance = this.$modal.open({
+                templateUrl: "directives/Simulations/SimEngineConfig.tpl.html",
+                controller: Simulations.SimEngineConfigCtrl,
+                resolve: {
+                    name: () => { return this.engine.name; },
+                    launcherURL: () => { return this.engine.launcherURL; },
+                    resultsURL: () => { return this.engine.resultsURL; }
+                }
+            });
+            modalInstance.result.then((data: any) => {
+                if(data["launcherURL"]!=this.engine.launcherURL || data["resultsURL"]!=this.engine.resultsURL) {
+                    this.$simulationService.buildSimulationEngine(data["name"],
+                            data["launcherURL"], data["resultsURL"])
+                        .then((engine: csComp.Services.SimulationEngine) => {
+                            this.engine = engine;
+                        }).catch((reason) => {
+                            this.$messageBusService.notify("ERROR building simulation engine: " + name,
+                                reason["data"] + "\nEngine not updated");
+                        });
+                }
+            });
         }
 
         public viewDetails(result: csComp.Services.SimulationResult): void {
