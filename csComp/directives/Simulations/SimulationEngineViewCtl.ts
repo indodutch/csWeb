@@ -48,7 +48,17 @@ module Simulations {
         }
 
         public viewDetails(result: csComp.Services.SimulationResult): void {
-            console.log(result);
+            this.$simulationService.loadSimulationResult(result)
+                .then((data: any) => {
+                    result.attachments = data;
+
+                    var rpt = csComp.Helpers.createRightPanelTab("edit", "simresultview", result, "View simulation result");
+                    this.$messageBusService.publish("rightpanel", "activate", rpt);
+
+                }).catch((reason) => {
+                    this.$messageBusService.notify("ERROR loading simulation results: " + result.name,
+                        reason["data"]);
+                });
         }
 
         public launchSimulation():void {

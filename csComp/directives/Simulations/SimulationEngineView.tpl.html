@@ -1,9 +1,15 @@
 <div>
-    <h3>{{ vm.engine.name }}</h3>
+    <div class="group-title">
+        {{ vm.engine.name }}
+        <div class="leftpanel-header-button-container">
+            <button ng-click="vm.configSimulationEngine()" class="button fa fa-cog leftpanel-header-button" />
+        </div>
+    </div>
+
     <div style="margin-left: 5px;position:relative;">
         <div style="float: left; margin-left: -5px; margin-top: 5px" data-toggle="collapse" data-target="#{{ vm.engine.id }}_newSim"><i class="fa fa-chevron-down togglebutton toggle-arrow-down"></i><i class="fa fa-chevron-up togglebutton toggle-arrow-up"></i></div>
         <div class="group-title">Start new simulation</div>
-        <div class="fa fa-cog" ng-click="vm.configSimulationEngine()" style="position:absolute;right:20px;top:3px;cursor:pointer"></div>
+
         <div id="{{ vm.engine.id }}_newSim" class="collapse in">
             <div data-ng-repeat="launchParam in vm.engine.launcher.params">
                 <simulation-parameter param="launchParam"/>

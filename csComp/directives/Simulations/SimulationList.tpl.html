@@ -9,7 +9,9 @@
         TODO: Load SimulationBundle configs from project config
     </div>
 
-    <div data-ng-repeat="simEngine in vm.engines">
-        <simulation-engine-view engine="simEngine"></simulation-engine-view>
+    <div style="overflow-y: scroll; height: 800px;">
+        <div data-ng-repeat="simEngine in vm.engines">
+            <simulation-engine-view engine="simEngine"></simulation-engine-view>
+        </div>
     </div>
 </div>

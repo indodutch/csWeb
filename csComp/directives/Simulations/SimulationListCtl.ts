@@ -56,7 +56,6 @@ module Simulations {
                 }
             });
             modalInstance.result.then((data: any) => {
-                console.log("Add new simulation: " + data);
                 this.addSimulationEngine(data["name"], data["launcherURL"], data["resultsURL"]);
             });
         }

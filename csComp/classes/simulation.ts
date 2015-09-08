@@ -30,16 +30,19 @@ module csComp.Services {
         id: string;
         name: string;
         params: { [name: string]: string; } = {};
+        url: string;
         attachments: SimulationAttachment[];
 
         constructor(
             id: string,
             name: string,
-            parameters: any
+            parameters: any,
+            url: string
         ) {
             this.id = id;
             this.name = name;
             this.params = parameters;
+            this.url = url;
         }
     }
 
