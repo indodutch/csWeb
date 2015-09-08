@@ -26,7 +26,7 @@
             <div ng-repeat="attach in vm.simResult.attachments">
                 <div>
                     {{ attach.name }}
-                    <button ng-if="attach.isVisible()" ng-click="attach.display()" class="button fa fa-eye leftpanel-header-button" />
+                    <button ng-if="attach.isVisible()" ng-click="vm.display(attach)" class="button fa fa-eye leftpanel-header-button" />
                 </div>
             </div>
         </div>

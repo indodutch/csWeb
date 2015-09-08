@@ -58,10 +58,6 @@ module csComp.Services {
         public isVisible(): boolean {
             return this.contentType==="application/json";
         }
-
-        public display(): void {
-            console.log("Display " + this.name + " in layer...");
-        }
     }
 
     export class SimulationLauncher {

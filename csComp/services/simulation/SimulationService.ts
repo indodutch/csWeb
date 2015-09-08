@@ -60,7 +60,6 @@ module csComp.Services {
                     attachments = [];
                     var attachs = response["data"]["_attachments"];
 
-
                     Object.keys(attachs).forEach((name) => {
                         if("content_type" in attachs[name]) {
                             var newAttach = new SimulationAttachment(name, attachs[name]["content_type"]);
