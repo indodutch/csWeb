@@ -9,7 +9,7 @@ module Simulations {
      */
     export class ParamInputCtrl {
         public static $inject = [
-            '$scope'
+            "$scope"
         ];
         parameter: csComp.Services.SimulationLauncherParam;
 
