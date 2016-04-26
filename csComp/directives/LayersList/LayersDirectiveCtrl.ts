@@ -282,7 +282,9 @@ module LayersDirective {
                         f.geometry = {
                             type: 'Point', coordinates: [pos.lon, pos.lat]
                         };
+
                         var fid = 'new object';
+
                         var tr = this.$layerService.findResourceByLayer(layer);
                         f.properties = { 'featureTypeId': key, 'Name': fid };
                         if (tr.featureTypes.hasOwnProperty(key)) {
@@ -300,6 +302,9 @@ module LayersDirective {
                             }
                             fid = ft.name;
                         }
+
+                        fid += '-'+csComp.Helpers.getGuid();
+                        f.properties = { 'featureTypeId': key, 'Name': fid };
 
                         layer.data.features.push(f);
                         this.$layerService.initFeature(f, layer);
