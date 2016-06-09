@@ -5,14 +5,18 @@ bower/bower_components/
 *.config
 coverage/
 
-
 .vscode/
+.idea/
 
 csComp/dist/
 csComp/includes/bower_dep/bower_components/
 csComp/includes/css/csStyles.css
 csComp/js/
 csComp/obj/
+csComp/**/*.js
+csComp/**/*.map
+csServerComp/**/*.js
+csServerComp/**/*.map
 csDataGatherer/public/data/
 csServerComp/Classes/Feature.d.ts
 csServerComp/Classes/Feature.js
@@ -53,6 +57,7 @@ OfflineSearch
 *.orig
 
 test/csComp/**/*.js
+test/csComp/**/*.map
 test/csComp/spec/classes/datasource.spec.js
 test/csComp/spec/classes/feature.spec.js
 test/csComp/spec/classes/group.spec.js
@@ -62,7 +67,8 @@ test/csComp/spec/services/bus/MessageBus.spec.js
 test/csComp/spec/services/layer/LayerService.spec.js
 test/csComp/spec/**/*.spec.js
 test/Scripts/
-.vscode/
 tmp.txt
 test/bower_components/
 typings/
+
+/fonts/
