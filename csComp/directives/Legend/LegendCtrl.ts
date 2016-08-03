@@ -142,20 +142,19 @@ module Legend {
                 this.$scope.activeStyleGroup = activeStyle.group;
             }
             if (!activeStyle) return leg;
+            if (activeStyle.activeLegend) {
+                leg = angular.merge(leg, activeStyle.activeLegend);
+            }
 
             var ptd: csComp.Services.IPropertyType = this.$layerService.propertyTypeData[activeStyle.property];
             this.$scope.activeStyleProperty = ptd;
             if (!ptd) return leg;
             if (ptd.legend) return ptd.legend;
-            leg.id = ptd.label + 'legendcolors';
-            leg.legendKind = 'interpolated';
-            leg.description = ptd.title;
-            leg.legendEntries = [];
-            if (activeStyle.activeLegend && activeStyle.activeLegend.legendEntries) {
-                activeStyle.activeLegend.legendEntries.forEach(le => {
-                    leg.legendEntries.push(le);
-                });
-            } else {
+            if (!leg.id) leg.id = ptd.label + 'legendcolors';
+            if (!leg.legendKind) leg.legendKind = 'interpolated';
+            if (!leg.description) leg.description = ptd.title;
+            if (!leg.legendEntries) leg.legendEntries = [];
+            if (leg.legendEntries.length == 0 && activeStyle.info.min !== activeStyle.info.max) {
                 leg.legendEntries.push(this.createLegendEntry(activeStyle, ptd, activeStyle.info.min));
                 leg.legendEntries.push(this.createLegendEntry(activeStyle, ptd, (activeStyle.info.min + activeStyle.info.max) / 4));
                 leg.legendEntries.push(this.createLegendEntry(activeStyle, ptd, 2 * (activeStyle.info.min + activeStyle.info.max) / 4));
