@@ -94,9 +94,9 @@
                         <div class="layer" context-menu="options(layer)" style="list-style-type: none;" data-ng-class="{indent: layer.isSublayer}">
                             <!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title="">Right</button>-->
                             <div ng-class="{false : 'checkbox checkbox-primary', true:'radio radio-primary'}[group.oneLayerActive==true]" style="margin-top: 0px;margin-bottom: 0px;">
-                                <input ng-if="!group.oneLayerActive" type="checkbox" id="cblayer{{layer.id}}" ng-checked="layer.enabled" data-ng-click="vm.toggleLayer(layer,$event);">
-                                <input ng-if="group.oneLayerActive" type="radio" ng-value="true" id="cblayer{{layer.id}}" ng-checked="layer.enabled" data-ng-click="vm.toggleLayer(layer,$event);">
-                                <label class ="layer-list-title" for="cblayer{{layer.id}}">
+                                <input ng-if="!group.oneLayerActive" type="checkbox" id="cblayer{{::layer.id}}" ng-checked="layer.enabled" data-ng-click="vm.toggleLayer(layer,$event);">
+                                <input ng-if="group.oneLayerActive" type="radio" ng-value="true" id="cblayer{{::layer.id}}" ng-checked="layer.enabled" data-ng-click="vm.toggleLayer(layer,$event);">
+                                <label class ="layer-list-title" for="cblayer{{::layer.id}}">
                                     {{layer.title}}
                                 </label>
 
@@ -114,7 +114,7 @@
                                         aria-haspopup="true" style="width:18px;cursor:pointer" aria-expanded="false">
                                     </div>
                                     <ul class="dropdown-menu pull-right" style="height: auto !important;overflow: visible !important;margin-top:-5px">
-                                        <li ng-repeat="o in layer._gui.options" class="dropdown-item"><a ng-click="vm.clickAction(o,layer)">{{o.title}}</a><fa name="{{o.icon}}" class="dropdown-item-icon" /></li>                                        
+                                        <li ng-repeat="o in layer._gui.options" class="dropdown-item"><a ng-click="vm.clickAction(o,layer)">{{o.title}}</a><fa name="{{o.icon}}" class="dropdown-item-icon" /></li>
                                     </ul>
                                 </div>
                                 <!-- Extra small button group -->
@@ -193,15 +193,15 @@
             <button ng-click="vm.stopEditingLayer(vm.layer)" class="layer-action">
                 <span class="fa fa-times layer-action-icon" />stop editing
             </button>
-                        
+
         </div>
-        <div class="leftpanel-scroll">                        
-            <layereditor />            
+        <div class="leftpanel-scroll">
+            <layereditor />
         </div>
     </div>
 
-    <div ng-if="vm.state === 'editfeaturetype'" class="layers-create-form">      
-            <feature-type-editor></feature-type-editor>        
+    <div ng-if="vm.state === 'editfeaturetype'" class="layers-create-form">
+            <feature-type-editor></feature-type-editor>
     </div>
 
 
