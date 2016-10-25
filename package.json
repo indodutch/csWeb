@@ -54,7 +54,7 @@
     "ansi-styles": "^2.2.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "chokidar": "^1.4.3",
+    "chokidar": "^1.6.0",
     "coveralls": "^2.11.9",
     "del": "^2.2.0",
     "glob": "^7.0.3",
